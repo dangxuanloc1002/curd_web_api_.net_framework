@@ -92,3 +92,7 @@ C:\Users\Loc Dang\source\repos\WebApplication1\WebApplication1\bin\Microsoft.Cod
 C:\Users\Loc Dang\source\repos\WebApplication1\WebApplication1\obj\Debug\WebApplication1.csproj.CopyComplete
 C:\Users\Loc Dang\source\repos\WebApplication1\WebApplication1\obj\Debug\WebApplication1.dll
 C:\Users\Loc Dang\source\repos\WebApplication1\WebApplication1\obj\Debug\WebApplication1.pdb
+C:\Users\Loc Dang\source\repos\curd_web_api_.net_framework\WebApplication1\obj\Debug\WebApplication1.csproj.AssemblyReference.cache
+C:\Users\Loc Dang\source\repos\curd_web_api_.net_framework\WebApplication1\obj\Debug\WebApplication1.csproj.CoreCompileInputs.cache
+C:\Users\Loc Dang\source\repos\curd_web_api_.net_framework\WebApplication1\obj\Debug\WebApplication1.dll
+C:\Users\Loc Dang\source\repos\curd_web_api_.net_framework\WebApplication1\obj\Debug\WebApplication1.pdb

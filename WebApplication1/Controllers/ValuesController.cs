@@ -4,69 +4,50 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using WebApplication1.DAL.interfaces;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
     public class ValuesController : ApiController
     {
+        private readonly IProductRepository _productRepository;
+
+        public ValuesController(IProductRepository productRepository)
+        {
+            _productRepository = productRepository;
+        }
+
         // GET api/values
         public List<product> Get()
         {
-            List<product> productList = new List<product>();
-            using (DBModel dbModel = new DBModel())
-            {
-                productList = dbModel.products.ToList<product>();
-            }
-            return productList;
+
+            return (List<product>)_productRepository.GetAllProduct();
         }
 
         // GET api/values/5
         public product Get(int id)
         {
-            product detail = null;
-            using (DBModel dbModel = new DBModel())
-            {
-                detail = dbModel.products.Where(p => p.id == id).FirstOrDefault<product>();
-            }
-            return detail;
+            return (product)_productRepository.GetProductByID(id);
         }
 
         // POST api/values
         public void Post(product productModel)
         {
-            using (DBModel dbModel = new DBModel())
-            {
-                dbModel.products.Add(productModel);
-                dbModel.SaveChanges();
-            }
+            _productRepository.InsertProduct(productModel);
 
         }
 
         // PUT api/values/5
         public void Put(int id, product productModel)
         {
-            using (DBModel dbModel = new DBModel())
-            {
-                product pr = dbModel.products.Where(p => p.id == id).SingleOrDefault();
-                pr.name = productModel.name;
-                pr.unit_price = productModel.unit_price;
-                pr.count = productModel.count;
-                pr.category_id = productModel.category_id;
-                dbModel.SaveChanges();
-            }
+            _productRepository.UpdateProduct(id, productModel);
         }
 
         // DELETE api/values/5
         public void Delete(int id)
         {
-             using (DBModel dbModel = new DBModel())
-            {
-                product pr = dbModel.products.Where(p => p.id == id).FirstOrDefault();
-                    dbModel.products.Remove(pr);
-                    dbModel.SaveChanges();
-            }
-
+            _productRepository.DeleteProduct(id);
         }
     }
 }
