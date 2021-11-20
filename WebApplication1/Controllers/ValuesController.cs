@@ -4,50 +4,54 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using WebApplication1.DAL.interfaces;
 using WebApplication1.Models;
+using WebApplication1.Repositories;
+using WebApplication1.Repositories.interfaces;
 
 namespace WebApplication1.Controllers
 {
     public class ValuesController : ApiController
     {
         private readonly IProductRepository _productRepository;
+        private UnitOfWork unitWork;
 
-        public ValuesController(IProductRepository productRepository)
+        public ValuesController()
         {
-            _productRepository = productRepository;
+
+            this.unitWork = new UnitOfWork(new DBModel());
+            this._productRepository = this.unitWork.ProductRepo;
         }
 
         // GET api/values
         public List<product> Get()
         {
 
-            return (List<product>)_productRepository.GetAllProduct();
+            return (List<product>)this._productRepository.GetAllProduct();
         }
 
         // GET api/values/5
         public product Get(int id)
         {
-            return (product)_productRepository.GetProductByID(id);
+            return (product)this._productRepository.GetProductByID(id);
         }
 
         // POST api/values
         public void Post(product productModel)
         {
-            _productRepository.InsertProduct(productModel);
+            this._productRepository.InsertProduct(productModel);
 
         }
 
         // PUT api/values/5
         public void Put(int id, product productModel)
         {
-            _productRepository.UpdateProduct(id, productModel);
+            this._productRepository.UpdateProduct(id, productModel);
         }
 
         // DELETE api/values/5
         public void Delete(int id)
         {
-            _productRepository.DeleteProduct(id);
+            this._productRepository.DeleteProduct(id);
         }
     }
 }
